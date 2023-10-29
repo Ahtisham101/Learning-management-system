@@ -9,7 +9,7 @@ export const ErrorHandlerMiddle = (
 ) => {
   err.statusCode = err.statusCode || 500
   err.message = err.message || "internal server error"
-
+//wrong mongodb is error
   if (err.name === "CastError") {
     const message = `Response not found. Invails: ${err.path}`
     err = new ErrorHandler(message, 400)
@@ -30,7 +30,7 @@ export const ErrorHandlerMiddle = (
     err = new ErrorHandler(message, 400)
   }
   res.status(err.statusCode).json({
-    success: true,
+    success: false,
     message: err.message,
   })
 }

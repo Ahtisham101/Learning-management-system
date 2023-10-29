@@ -17,7 +17,9 @@ interface iRegistrationBody {
 export const registrationUser = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      console.log(req)
       const { name, email, password } = req.body
+     
       const isEmailExist = await userModel.findOne({ email })
       if (isEmailExist) {
         return next(new ErrorHandter("Email already exist", 400))
@@ -34,6 +36,7 @@ export const registrationUser = CatchAsyncError(
         path.join(__dirname, "../mails/activation-mail.ejs"),
         data
       )
+      // console.log(html)
       try {
         await sendMail({
           email: user.email,
@@ -47,9 +50,11 @@ export const registrationUser = CatchAsyncError(
           activationToken: activationToken.token,
         })
       } catch (error: any) {
+       
         return next(new ErrorHandter(error.message, 400))
       }
     } catch (error: any) {
+      console.log(error.message)
       return next(new ErrorHandter(error.message, 400))
     }
   }
