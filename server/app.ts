@@ -6,8 +6,8 @@ import { ErrorHandlerMiddle } from "./middleware/error"
 import userRouter from "./routes/user.route"
 require("dotenv").config()
 // body parser
-app.use(express.json({ limit: "50mb " }))
-
+// app.use(express.json({ limit: "1220mb " }))
+app.use(express.json());
 // cookie parser
 
 app.use(cookieParser())
@@ -19,6 +19,7 @@ app.use(
     origin: process.env.ORIGIN,
   })
 )
+//routes
 app.use("/api/v1", userRouter)
 //testing
 
