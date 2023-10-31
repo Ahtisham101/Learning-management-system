@@ -8,4 +8,4 @@ const redisClinet = () => {
   }
   throw new Error("Reid conntection failed")
 }
-export const radis = new Redis(redisClinet())
+export const redis  = new Redis(redisClinet())
