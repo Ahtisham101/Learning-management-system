@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="content-Type" content="text/html" charset="UTF-8" />
+    <title>ELearning Activation Email</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LMS Activation Email</title>
     <style type="text/css">
+      /* Base */
       body {
         margin: 0;
         padding: 0;
@@ -12,7 +13,7 @@
         font-family: Arial, sans-serif;
         font-size: 16px;
         line-height: 1.5;
-        background-color: #fafafa;
+        background-color: #FAFAFA;
         color: #222222;
       }
       a {
@@ -31,10 +32,10 @@
         margin-top: 0;
         margin-bottom: 24px;
       }
-
       table td {
         vertical-align: top;
       }
+      /* Layout */
       .email-wrapper {
         max-width: 600px;
         margin: 0 auto;
@@ -52,6 +53,7 @@
         background-color: #f6f6f6;
         padding: 24px;
       }
+      /* Buttons */
       .button {
         display: inline-block;
         background-color: #0070f3;
@@ -68,29 +70,17 @@
   <body>
     <div class="email-wrapper">
       <div class="email-header">
-        <h1>Welcome to LMS</h1>
+        <h1>Welcome to ELearning</h1>
       </div>
       <div class="email-body">
-        <p>Hello <%= user.name %></p>
-        <p>
-          Thank you for registering With E-learning. To activate your account,
-          please use the following activation code:
-        </p>
+        <p>Hello <%= user.name %>,</p>
+        <p>Thank you for registering with ELearning. To activate your account, please use the following activation code:</p>
         <h2><%= activationCode %></h2>
-        <p>
-          Please enter this code on the activation page within the next 5
-          nxnutes.
-        </p>
-        <p>
-          If you did not register for a E-learning account, please ignore this
-          email.
-        </p>
+        <p>Please enter this code on the activation page within the next 5 minutes.</p>
+        <p>If you did not register for a ELearning account, please ignore this email.</p>
       </div>
       <div class="email-footer">
-        <p>
-          If you have any questions, please don't hesitate to contact us at
-          <a href="mailto:ahtisham_101@outlook.com">ahtisham_101@outlook.com</a>
-        </p>
+        <p>If you have any questions, please don't hesitate to contact us at <a href="mailto:support@becodemy.com">support@becodemy.com</a></p>
       </div>
     </div>
   </body>

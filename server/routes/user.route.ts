@@ -1,6 +1,8 @@
-import express from "express"
+import express from "express";
 import {
   activateUser,
+  deleteUser,
+  getAllUsers,
   getUserInfo,
   loginUser,
   logoutUser,
@@ -9,25 +11,48 @@ import {
   updatePassword,
   updateProfilePicture,
   updateUserInfo,
-} from "../controllers/user.controllers"
-import { isAutheticated } from "../middleware/auth"
-const userRouter = express.Router()
-userRouter.post("/registration", registrationUser)
+  updateUserRole,
+} from "../controllers/user.controller";
+import { authorizeRoles, isAutheticated } from "../middleware/auth";
+const userRouter = express.Router();
 
-userRouter.post("/activate-user", activateUser)
+userRouter.post("/registration", registrationUser);
 
-userRouter.post("/login", loginUser)
+userRouter.post("/activate-user", activateUser);
 
-userRouter.get("/logout", isAutheticated, logoutUser)
+userRouter.post("/login", loginUser);
 
-userRouter.get("/me", isAutheticated, getUserInfo)
+userRouter.get("/logout",isAutheticated, logoutUser);
 
-userRouter.post("/social-auth", socialAuth)
+userRouter.get("/me", isAutheticated, getUserInfo);
 
-userRouter.put("/update-user-info", isAutheticated, updateUserInfo)
+userRouter.post("/social-auth", socialAuth);
 
-userRouter.put("/update-user-password", isAutheticated, updatePassword)
+userRouter.put("/update-user-info",isAutheticated, updateUserInfo);
 
-userRouter.put("/update-user-avatar", isAutheticated, updateProfilePicture)
+userRouter.put("/update-user-password", isAutheticated, updatePassword);
 
-export default userRouter
+userRouter.put("/update-user-avatar", isAutheticated, updateProfilePicture);
+
+userRouter.get(
+  "/get-users",
+  isAutheticated,
+  authorizeRoles("admin"),
+  getAllUsers
+);
+
+userRouter.put(
+  "/update-user",
+  isAutheticated,
+  authorizeRoles("admin"),
+  updateUserRole
+);
+
+userRouter.delete(
+  "/delete-user/:id",
+  isAutheticated,
+  authorizeRoles("admin"),
+  deleteUser
+);
+
+export default userRouter;
