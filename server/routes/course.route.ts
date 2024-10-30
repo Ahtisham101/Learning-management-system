@@ -22,7 +22,7 @@ courseRouter.post(
   authorizeRoles("admin"),
   uploadCourse
 );
-
+ 
 courseRouter.put(
   "/edit-course/:id",
   isAutheticated,
